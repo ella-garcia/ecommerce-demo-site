@@ -4,63 +4,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title> CONTENT | E-COMMERCE WEBSITE BY EDYODA </title>
+    <title>CONTENT | E-COMMERCE WEBSITE BY EDYODA</title>
     <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
-    <!-- favicon -->
     <link rel="icon" href="https://yt3.ggpht.com/a/AGF-l78km1YyNXmF0r3-0CycCA0HLA_i6zYn_8NZEg=s900-c-k-c0xffffffff-no-rj-mo" type="image/gif" sizes="16x16">
-
     <link rel="stylesheet" href="css/content.css">
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-5R9JN3W');</script>
-    <!-- End Google Tag Manager -->
+    
+    <style>
+        .heading-transition {
+            transition: opacity 0.3s ease-in-out;
+        }
+        .heading-transition.fade {
+            opacity: 0;
+        }
+    </style>
 </head>
 <body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5R9JN3W"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
     <div id="mainContainer">
-
-        <h1 id="clothingTitle"> clothing for men and women </h1>
+        <h1 id="clothingTitle" class="heading-transition">clothing for men and women</h1>
         <div id="containerClothing">
             <!-- JS rendered code -->
         </div>
 
-        <h1 id="accessoriesTitle"> accessories for men and women </h1>
+        <h1 id="accessoriesTitle" class="heading-transition">accessories for men and women</h1>
         <div id="containerAccessories">
             <!-- JS rendered code -->
         </div>
     </div>
+
     <script>
         // Function to get URL parameters
         function getUrlParameter(name) {
-            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
-            var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
-            var results = regex.exec(location.search);
-            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+            const params = new URLSearchParams(window.location.search);
+            return params.get(name);
+        }
+
+        // Function to update heading with fade effect
+        function updateHeading(elementId, newText) {
+            const element = document.getElementById(elementId);
+            if (!element || !newText) return;
+
+            element.classList.add('fade');
+            
+            setTimeout(() => {
+                element.textContent = newText;
+                element.classList.remove('fade');
+            }, 300);
         }
 
         // Update headings when page loads
         document.addEventListener('DOMContentLoaded', function() {
-            // Get URL parameters
             const clothingHeading = getUrlParameter('clothing');
             const accessoriesHeading = getUrlParameter('accessories');
 
-            // Update clothing heading if parameter exists
             if (clothingHeading) {
-                document.getElementById('clothingTitle').textContent = clothingHeading;
+                updateHeading('clothingTitle', clothingHeading);
             }
 
-            // Update accessories heading if parameter exists
             if (accessoriesHeading) {
-                document.getElementById('accessoriesTitle').textContent = accessoriesHeading;
+                updateHeading('accessoriesTitle', accessoriesHeading);
             }
         });
     </script>
+    <script src="content.js"></script>
 </body>
-<script src="content.js"></script>
 </html>
