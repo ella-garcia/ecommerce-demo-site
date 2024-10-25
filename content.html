@@ -25,16 +25,42 @@
     <!-- End Google Tag Manager (noscript) -->
     <div id="mainContainer">
 
-        <h1> clothing for men and women </h1>
+        <h1 id="clothingTitle"> clothing for men and women </h1>
         <div id="containerClothing">
             <!-- JS rendered code -->
         </div>
 
-        <h1> accessories for men and women </h1>
+        <h1 id="accessoriesTitle"> accessories for men and women </h1>
         <div id="containerAccessories">
             <!-- JS rendered code -->
         </div>
     </div>
+    <script>
+        // Function to get URL parameters
+        function getUrlParameter(name) {
+            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+            var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            var results = regex.exec(location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        }
+
+        // Update headings when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get URL parameters
+            const clothingHeading = getUrlParameter('clothing');
+            const accessoriesHeading = getUrlParameter('accessories');
+
+            // Update clothing heading if parameter exists
+            if (clothingHeading) {
+                document.getElementById('clothingTitle').textContent = clothingHeading;
+            }
+
+            // Update accessories heading if parameter exists
+            if (accessoriesHeading) {
+                document.getElementById('accessoriesTitle').textContent = accessoriesHeading;
+            }
+        });
+    </script>
 </body>
 <script src="content.js"></script>
 </html>
